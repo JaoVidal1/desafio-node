@@ -1,4 +1,4 @@
-import jogadores from "..models/Jogador.js";
+import jogadores from "../models/Jogador.js";
 
 class JogadorController {
 static listarJogadores = (req, res) => {
@@ -55,7 +55,7 @@ static excluirJogador = (req, res) =>{
 static premioJogador = (req, res) =>{
     const id = req.params.id;
 
-    const jogadoresResponse = await jogadores.find()
+    const jogadoresResponse =  jogadores.find()
     jogadoresResponse.forEach(jogador => {
         const moeda = jogador.moedas;
         let medalhas = parseInt(moedas / 10)
