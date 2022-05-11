@@ -6,7 +6,7 @@ static listarJogadores = (req, res) => {
         res.status(200).json(jogadores)
 });
 };
-static listarJogadorPorID = (req, res => {
+static listarJogadorPorID = (req, res) => {
     const id = req.params.id;
 
     jogadores.findById(id, (err, jogadores => {
@@ -17,7 +17,7 @@ else {
     res.status(200).send(jogadores);
 };
  }));
-});
+};
 
 static cadastrarJogador = (req, res) => {
     let jogador = new jogadores(req.body);
