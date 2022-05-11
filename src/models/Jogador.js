@@ -11,6 +11,6 @@ moedas: {type: Number, required: true}
 
 );
 
-const jogadores = mongoose.model('jogadores', jogadoresSchema);
+const jogadores = mongoose.model('jogadores', jogadorSchema);
 
 export default jogadores;
