@@ -1,14 +1,13 @@
-import express from "express";
-import jogadores from "./jogadoresRoutes.js";
+const userRoutes = require("./routes-jogadoresRoutes.js")
 
 const routes = (app) => {
-    app.route('/').get((req, res) =>{
-        res.status(200).send({titulo: "Desafio"})
+    app.route('/').get((req, res) => {
+        res.status(202).send('Desafio')
     })
 
     app.use(
-        express.json(),
-        jogadores
-    )
-}
-export default router
+        userRoutes
+        );
+};
+
+module.exports = routes 

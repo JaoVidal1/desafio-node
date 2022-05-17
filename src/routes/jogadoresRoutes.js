@@ -1,13 +1,12 @@
-import express from "express";
-import JogadorController from "../controllers/jogadoresController.js";
+const express = require("express") 
+const { readJogador, createJogador, updateJogador, deletarJogador } = require("../controllers/jogadoresController.js")
 
-const router = express.Router();
+const router = express.Router()
 
 router
-.get("/jogadores", JogadorController.listarJogadores)
-.get("/jogadores/:id", JogadorController.listarJogadorPorID)
-.post("/jogadores", JogadorController.cadastrarJogador)
-.put("/jogadores/:id", JogadorController.atualizarJogador)
-.delete("/jogadores/:id", JogadorController.excluirJogador)
-.put("/jogadores/:id", JogadorController.premioJogador)
-export default router;
+    .get('/jogadores', leituraJogador)
+    .post("/jogadores", criaJogador)
+    .put("/jogadores/:id", atualizaJogador)
+    .delete("/jogadores/:id", excluiJogador)
+
+module.exports = router 
