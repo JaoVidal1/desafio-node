@@ -3,7 +3,7 @@ const repository = require("../repositories/jogadoresRepository.js")
 const lerJogador = async () => {
 
     const jogadoresResponse = await repository.jogadorFind();
-    const res = jogadoresResponse.map(calculaMedalhaTrofeu);
+    const res = jogadoresResponse.map(calculaPremio);
 
     return res;
 }
@@ -20,7 +20,7 @@ const criarJogador = async(body) => {
     return repository.jogadorCria(body);
 }
 
-const calculaMedalhaTrofeu = (jogador) => {
+const calculaPremio = (jogador) => {
     const { moedas } = jogador;
     const medalhas = parseInt(moedas / 10);
     const trofeus = parseInt(medalhas / 3);
