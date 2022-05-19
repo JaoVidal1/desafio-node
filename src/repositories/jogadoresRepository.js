@@ -9,7 +9,8 @@ const jogadorAtualiza = async (id, content) => {
     return jogadores.findByIdAndUpdate(id, {$set: content})
 }
 const jogadorCria = async (body) => {
-    return new jogadores(body)
+    const jogador = new jogadores(body)
+    return jogador.save()
 }
 module.exports = {
     jogadorBusca,
