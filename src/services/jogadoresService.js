@@ -1,6 +1,6 @@
 const repository = require("../repositories/jogadoresRepository.js")
 const lerJogador = async () => {
-    const jogadoresResponse = await repository.jogadorFind();
+    const jogadoresResponse = await repository.jogadorBusca();
     const res = jogadoresResponse.map(calculaPremio);
     return res;
 }

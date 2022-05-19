@@ -1,6 +1,6 @@
-import express from "express";
-import db from "./config/dbConnect.js"
-import routes from "./routes/index.js"
+const express = require("express")
+const db = require("./config/dbConnect.js")
+const routes = require("./routes/index.js")
 
 db.on("error", console.log.bind(console, 'Não foi possível fazer a conexão!'))
 db.once("open", () => {
@@ -21,4 +21,4 @@ routes(app);
 
 
 
-export default app
+module.exports = app
