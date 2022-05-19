@@ -2,10 +2,10 @@
   "name": "desafio-node",
   "version": "1.0.0",
   "description": "",
-  "main": "connection.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha ./src/tests/tests-spec.js"
+    "test": "mocha ./src/tests/tests.spec.js"
   },
   "mocha": {
     "watch": true,
