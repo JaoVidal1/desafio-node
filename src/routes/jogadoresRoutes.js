@@ -4,8 +4,8 @@ const { leituraJogador, criaJogador, atualizaJogador, removerJogador } = require
 const router = express.Router()
 
 router
-    .get('/jogadores', leituraJogador)
-    .post("/jogadores", criaJogador)
+    .get('/jler', leituraJogador)
+    .post("/jcria", criaJogador)
     .put("/jogadores/:id", atualizaJogador)
     .delete("/jogadores/:id", removerJogador)
 

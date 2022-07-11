@@ -1,0 +1,108 @@
+<html ng-app="Desafio2">
+<head>
+    <title> Desafio2 </title>
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+   <style>
+     .jumbotron {
+         width: 400px;
+         text-align: center;
+         margin-top: 20px;  
+         margin-left: auto;
+         margin-right: auto;
+          }
+     .table{
+        width: 400px;
+         text-align: center;
+         margin-top: 20px;  
+         margin-left: auto;
+         margin-right: auto;
+     }
+     .form-control{
+     margin-bottom: 5px;
+     width: 400px;
+         text-align: center;
+         margin-top: 20px;  
+         margin-left: auto;
+         margin-right: auto;
+     }
+     
+   </style>
+    
+    <script src="lib/angular/angular.js"></script>
+    <script>
+       var app = angular.module("Desafio2", []);
+       app.controller("Desafio2Controller", function ($scope, $http){
+       $scope.titulo = "Lista Jogadores";
+       $scope.jogadores = [
+           
+        ];
+ 
+
+  $scope.adicionarJogador = function (jogador) {
+    $http.post('http://localhost:3000/jcria', jogador)
+    .then(() => {
+      delete $scope.jogadores;
+      
+    });
+  };
+     
+       $scope.apagarJogador = function (jogadores){
+    $scope.jogadores = jogadores.filter(function (jogador){
+        if (!jogador.selecionado) return jogador;
+        });
+       };
+       $scope.isJogadorSelecionado = function (jogadores){
+       return jogadores.some(function(jogador){
+            return jogador.selecionado;
+        });
+       };
+       
+       $scope.editarJogador = function (jogadores) {
+    $http
+      .put(
+        'http://localhost:3000/jogadores/:id'
+      )
+      .then(() => {
+        delete $scope.jogadores;
+        document.location.reload(true);
+      });
+    };
+
+    }) ;
+        </script>
+        <style>.selecionado {font-weight: bold; background-color: #FAFAD2;}</style>
+</head> 
+<body ng-controller="Desafio2Controller">
+    <div class= "jumbotron">
+
+        <table  class="table table-striped">
+            <tr>
+                <th></th>
+                <th>Nome</th>
+                <th>Moedas</th>
+                <th>Medalhas</th>
+                <th>Troféus</th>
+                
+                </tr>
+            <tr class="selecionado" ng-repeat="jogador in jogadores">
+            <td> <input type="checkbox" ng-model="jogador.selecionado"/></td>
+            <td>{{jogador.nome}}</td>
+            <td>{{jogador.moedas}}</td>
+            <td>{{jogador.medalhas}}</td>
+            <td>{{jogador.trofeus}}</td>
+            </tr>
+        </table>
+        <hr/>
+        <input class="form-control" type="text"ng-model="jogador.nome" placeholder="Nome"/>
+      
+        <input class="form-control" type="number" ng-model="jogador.moedas"placeholder="Moedas"/>
+      
+        <button class="btn btn-primary btn-block" ng-click="adicionarJogador(jogador)" ng-disabled="!jogador.nome || !jogador.moedas"> Adicionar Jogador</button>
+        <button class="btn btn-danger btn-block" ng-click="apagarJogador(jogadores)" ng-disabled="!isJogadorSelecionado(jogadores)"> Apagar Jogador</button>
+        <button class="btn btn-danger btn-block" ng-click="editarJogador(jogadores)" ng-disabled="!isJogadorSelecionado(jogadores)"> Editar Jogador</button>
+       
+    
+
+    </div>
+</body>   
+</html>
